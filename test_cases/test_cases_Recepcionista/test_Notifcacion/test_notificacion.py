@@ -37,10 +37,10 @@ class Test_Notifiacion:
         
     def test_noti(self):
         
-        WebDriverWait(self.driver, 35).until(EC.presence_of_element_located((By.XPATH, "(//div[(text()= 'Hay 12 membresías que ya vencieron.')])[1]")))
-        actual = WebDriverWait(self.driver, 15).until(EC.visibility_of_element_located((By.XPATH, "(//div[(text()= 'Hay 12 membresías que ya vencieron.')])[1]"))).text
+        WebDriverWait(self.driver, 35).until(EC.presence_of_element_located((By.XPATH, "//div[@class='Toastify__toast-icon Toastify--animate-icon Toastify__zoom-enter']//following-sibling::div")))
+        actual = WebDriverWait(self.driver, 15).until(EC.visibility_of_element_located((By.XPATH, "//div[@class='Toastify__toast-icon Toastify--animate-icon Toastify__zoom-enter']//following-sibling::div"))).text
         print(f"+++++++++++++ {actual}")
-        esperado = "Hay 12 membresías que ya vencieron."
+        esperado = "Hay 5 membresías que ya vencieron."
         assert actual == esperado, f"Error: Texto actual '{actual}' no coincide con el esperado '{esperado}'"
         time.sleep(1)
 

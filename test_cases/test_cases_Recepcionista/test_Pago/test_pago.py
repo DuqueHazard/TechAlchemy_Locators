@@ -40,7 +40,7 @@ class Test_Notifiacion:
         time.sleep(2)
         self.driver.find_element(By.XPATH,"//input[@name = 'monto']").click()
         time.sleep(1)
-        self.driver.find_element(By.XPATH,"//input[@name = 'monto']").send_keys("500")
+        self.driver.find_element(By.XPATH,"//input[@name = 'monto']").send_keys("60000")
         time.sleep(2)
         self.driver.find_element(By.XPATH,"//select[@name = 'metodo_pago']").click()
         time.sleep(1)
@@ -51,8 +51,8 @@ class Test_Notifiacion:
         self.driver.find_element(By.XPATH,"//option[text() = 'Alquiler de Casillero']").click()
         self.driver.find_element(By.XPATH,"//button[@type = 'submit']").click()
         time.sleep(3)
-        WebDriverWait(self.driver, 35).until(EC.presence_of_element_located((By.XPATH, "//div [text()= 'Pago creado exitosamente']")))
-        actual = WebDriverWait(self.driver, 15).until(EC.visibility_of_element_located((By.XPATH, "//div [text()= 'Pago creado exitosamente']"))).text
+        WebDriverWait(self.driver, 35).until(EC.presence_of_element_located((By.XPATH, "//div[@class='Toastify__toast-icon Toastify--animate-icon Toastify__zoom-enter']//following-sibling::div")))
+        actual = WebDriverWait(self.driver, 15).until(EC.visibility_of_element_located((By.XPATH, "//div[@class='Toastify__toast-icon Toastify--animate-icon Toastify__zoom-enter']//following-sibling::div"))).text
         print(f"+++++++++++++ {actual}")
         esperado = "Pago creado exitosamente"
         assert actual == esperado, f"Error: Texto actual '{actual}' no coincide con el esperado '{esperado}'"
@@ -74,9 +74,9 @@ class Test_Notifiacion:
         time.sleep(5)
         self.driver.find_element(By.XPATH,"(//button[text() = 'Eliminar'])[1]").click()
         time.sleep(2)
-        self.driver.find_element(By.XPATH,"(//button[@class = 'btn btn-danger'])[3]").click()
-        WebDriverWait(self.driver, 35).until(EC.presence_of_element_located((By.XPATH, "//div [text()= 'Pago eliminado con éxito.']")))
-        actual = WebDriverWait(self.driver, 15).until(EC.visibility_of_element_located((By.XPATH, "//div [text()= 'Pago eliminado con éxito.']"))).text
+        self.driver.find_element(By.XPATH,"//div[@class='modal-content']//button[text()='Eliminar']").click()
+        WebDriverWait(self.driver, 35).until(EC.presence_of_element_located((By.XPATH, "//div[@class='Toastify__toast-icon Toastify--animate-icon Toastify__zoom-enter']//following-sibling::div")))
+        actual = WebDriverWait(self.driver, 15).until(EC.visibility_of_element_located((By.XPATH, "//div[@class='Toastify__toast-icon Toastify--animate-icon Toastify__zoom-enter']//following-sibling::div"))).text
         print(f"+++++++++++++ {actual}")
         esperado = "Pago eliminado con éxito."
         assert actual == esperado, f"Error: Texto actual '{actual}' no coincide con el esperado '{esperado}'"

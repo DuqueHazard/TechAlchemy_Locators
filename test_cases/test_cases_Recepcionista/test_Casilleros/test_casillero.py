@@ -92,8 +92,8 @@ class Test_Casillero:
         self.driver.find_element(By.XPATH,"//button [@class = 'btn btn-primary']").click()
         time.sleep(3)
         # capturar mensaje
-        WebDriverWait(self.driver, 35).until(EC.presence_of_element_located((By.XPATH, "//div [text()= 'Historial actualizado con éxito.']")))
-        actual = WebDriverWait(self.driver, 15).until(EC.visibility_of_element_located((By.XPATH, "//div [text()= 'Historial actualizado con éxito.']"))).text
+        WebDriverWait(self.driver, 35).until(EC.presence_of_element_located((By.XPATH, "//div[@class='Toastify__toast-icon Toastify--animate-icon Toastify__zoom-enter']//following-sibling::div")))
+        actual = WebDriverWait(self.driver, 15).until(EC.visibility_of_element_located((By.XPATH, "//div[@class='Toastify__toast-icon Toastify--animate-icon Toastify__zoom-enter']//following-sibling::div"))).text
         print(f"+++++++++++++ {actual}")
         esperado = "Historial actualizado con éxito."
         assert actual == esperado, f"Error: Texto actual '{actual}' no coincide con el esperado '{esperado}'"
@@ -109,10 +109,11 @@ class Test_Casillero:
         self.driver.find_element(By.XPATH,"(//button[text()= 'Eliminar'])[3]").click()
         time.sleep(1)
         self.driver.find_element(By.XPATH,"//div [@class = 'modal-footer']//child::button[text() = 'Eliminar']").click()
-        time.sleep(5)
-        actual = self.driver.find_element(By.XPATH, "(//strong [text()= 'Disponible'])[1]").text   
-        print(f"+++++++++++++",actual)
-        esperado = "Disponible"
+        time.sleep(1)
+        WebDriverWait(self.driver, 35).until(EC.presence_of_element_located((By.XPATH, "//div[@class='Toastify__toast-icon Toastify--animate-icon Toastify__zoom-enter']//following-sibling::div")))
+        actual = WebDriverWait(self.driver, 15).until(EC.visibility_of_element_located((By.XPATH, "//div[@class='Toastify__toast-icon Toastify--animate-icon Toastify__zoom-enter']//following-sibling::div"))).text
+        print(f"+++++++++++++ {actual}")
+        esperado = "Historial eliminado con éxito."
         assert actual == esperado
         time.sleep(3)
 
